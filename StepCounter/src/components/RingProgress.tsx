@@ -1,5 +1,14 @@
-import { View, Text } from "react-native";
-import SVG, { Circle } from "react-native-svg";
+import { View } from "react-native";
+import SVG, { Circle, CircleProps } from "react-native-svg";
+import Animated, {
+  useAnimatedProps,
+  useSharedValue,
+  withTiming,
+  withSpring
+} from "react-native-reanimated";
+import { useEffect } from "react";
+
+const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 
 type RingProgressProps = {
   radius?: number;
@@ -16,7 +25,30 @@ const RingProgress = ({
 
   const innerRadius = radius - strokeWidth / 2;
   const circumference = 2 * Math.PI * innerRadius;
-  
+
+  const fill = useSharedValue(0.7);
+
+  useEffect(() => {
+    // fill.value = withTiming(progress, {duration: 1500});
+    fill.value = withTiming(progress, { duration: 1500 });
+  }, [progress])
+
+  const animatedProps = useAnimatedProps(() => ({
+    strokeDasharray: [circumference * fill.value, circumference]
+  }))
+
+  const circleDefaultProps: CircleProps = {
+    r: innerRadius,
+    cx: radius,
+    cy: radius,
+    originX: radius,
+    originY: radius,
+    strokeWidth: strokeWidth,
+    stroke: color,
+    strokeLinecap: "round",
+    rotation: "-90"
+  }
+
   return (
     <View
       style={{
@@ -29,25 +61,14 @@ const RingProgress = ({
       <SVG>
         {/* Background */}
         <Circle
-          cx={radius}
-          cy={radius}
-          r={innerRadius}
-          strokeWidth={strokeWidth}
-          stroke={color}
+          {...circleDefaultProps}
           opacity={0.2}
         />
+
         {/* Foreground  */}
-        <Circle
-          r={innerRadius}
-          cx={radius}
-          cy={radius}
-          originX={radius}
-          originY={radius}
-          strokeWidth={strokeWidth}
-          stroke={color}
-          strokeDasharray={[circumference * progress, circumference]}
-          strokeLinecap="round"
-          rotation="-90"
+        <AnimatedCircle
+          animatedProps={animatedProps}
+          {...circleDefaultProps}
         />
       </SVG>
     </View>
