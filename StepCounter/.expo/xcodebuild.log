@@ -1,0 +1,20 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -workspace /Users/howen/Documents/Projects/stepCounter/StepCounter/ios/StepCounter.xcworkspace -configuration Debug -scheme StepCounter -destination id=00008101-0003142C14F0001E
+
+User defaults from command line:
+    IDEPackageSupportUseBuiltinSCM = YES
+
+Prepare packages
+
+Computing target dependency graph and provisioning inputs
+
+Create build description
+Build description signature: fd133304930c4b83772587b59992af6e
+Build description path: /Users/howen/Library/Developer/Xcode/DerivedData/StepCounter-bbglkklzgqtvpqdagetceenrtuyi/Build/Intermediates.noindex/XCBuildData/fd133304930c4b83772587b59992af6e.xcbuilddata
+
+note: Building targets in dependency order
+warning: Run script build phase '[CP-User] Generate app.config for prebuilt Constants.manifest' will be run during every build because it does not specify any outputs. To address this warning, either add output dependencies to the script phase, or configure it to run in every build by unchecking "Based on dependency analysis" in the script phase. (in target 'EXConstants' from project 'Pods')
+/Users/howen/Documents/Projects/stepCounter/StepCounter/ios/StepCounter.xcodeproj: error: No profiles for 'com.anonymous.StepCounter' were found: Xcode couldn't find any iOS App Development provisioning profiles matching 'com.anonymous.StepCounter'. Automatic signing is disabled and unable to generate a profile. To enable automatic signing, pass -allowProvisioningUpdates to xcodebuild. (in target 'StepCounter' from project 'StepCounter')
+warning: Run script build phase 'Start Packager' will be run during every build because it does not specify any outputs. To address this warning, either add output dependencies to the script phase, or configure it to run in every build by unchecking "Based on dependency analysis" in the script phase. (in target 'StepCounter' from project 'StepCounter')
+note: Run script build phase '[Expo] Configure project' will be run during every build because the option to run the script phase "Based on dependency analysis" is unchecked. (in target 'StepCounter' from project 'StepCounter')
+warning: Run script build phase 'Bundle React Native code and images' will be run during every build because it does not specify any outputs. To address this warning, either add output dependencies to the script phase, or configure it to run in every build by unchecking "Based on dependency analysis" in the script phase. (in target 'StepCounter' from project 'StepCounter')

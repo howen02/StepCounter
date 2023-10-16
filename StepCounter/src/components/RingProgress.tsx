@@ -4,7 +4,6 @@ import Animated, {
   useAnimatedProps,
   useSharedValue,
   withTiming,
-  withSpring,
 } from "react-native-reanimated";
 import { useEffect } from "react";
 import { AntDesign } from "@expo/vector-icons";
@@ -26,15 +25,14 @@ const RingProgress = ({
   const innerRadius = radius - strokeWidth / 2;
   const circumference = 2 * Math.PI * innerRadius;
 
-  const fill = useSharedValue(0.7);
+  const fill = useSharedValue(0);
 
   useEffect(() => {
-    // fill.value = withTiming(progress, {duration: 1500});
     fill.value = withTiming(progress, { duration: 1500 });
   }, [progress]);
 
   const animatedProps = useAnimatedProps(() => ({
-    strokeDasharray: [circumference * fill.value, circumference],
+    strokeDasharray: [circumference * fill.value, circumference]
   }));
 
   const circleDefaultProps: CircleProps = {
@@ -59,7 +57,7 @@ const RingProgress = ({
       }}
     >
       <SVG>
-        {/* Background */}
+        {/* Background */} 
         <Circle {...circleDefaultProps} opacity={0.2} />
 
         {/* Foreground  */}
